@@ -1,16 +1,16 @@
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import React, { useState } from "react";
-import { Link, Stack } from "expo-router";
+import { Stack, Link } from "expo-router";
 import Colors from "@/constants/Colors";
 import Button from "@/components/Button";
 
-const SignInScreen = () => {
+export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: "Sign in" }} />
+      <Stack.Screen options={{ title: "Sign up" }} />
 
       <Text style={styles.label}> Email </Text>
       <TextInput
@@ -28,11 +28,13 @@ const SignInScreen = () => {
         secureTextEntry
       />
 
-      <Button text="Sign in" />
-      <Link href={"/sing-up"} style={styles.textButton}>Create an account</Link>
+      <Button text="Create account" />
+      <Link href={"/sign-in"} style={styles.textButton}>
+        Sign in
+      </Link>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -60,5 +62,3 @@ const styles = StyleSheet.create({
     color: "gray",
   },
 });
-
-export default SignInScreen;
