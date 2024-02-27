@@ -18,13 +18,12 @@ const OrderDetailsScreen = () => {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: `Order #${order.id}`}} />
-
-      <OrdersListItem order={order}/>
-
+      
       <FlatList
         data={order.order_items}
         renderItem={({ item }) => <OrderItemListItem orderItem={item} />}
         contentContainerStyle={{ gap: 10 }}
+        ListHeaderComponent={() => <OrdersListItem order={order}/>}
       />
 
     </View>
