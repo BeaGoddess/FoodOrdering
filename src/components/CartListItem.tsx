@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import { CartItem } from '../types';
 import { defaultPizzaImage } from './ProductListItem';
 import { FontAwesome } from '@expo/vector-icons';
-import { useCart } from '@/provider/CartProvider';
+import { useCart } from '@/providers/CartProvider';
 
 type CartListItemProps = {
   cartItem: CartItem;

@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet, Pressable, ActivityIndicator } from "rea
 import { useState } from "react";
 import { Link, Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { defaultPizzaImage } from "@/components/ProductListItem";
-import { useCart } from "@/provider/CartProvider";
+import { useCart } from "@/providers/CartProvider";
 import { PizzaSize } from "@/types";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
