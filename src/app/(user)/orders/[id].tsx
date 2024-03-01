@@ -9,6 +9,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import OrdersListItem from "@/components/OrdersListItem";
 import OrderItemListItem from "@/components/OrderItemListItem";
 import { useOrderDetails } from "@/api/orders";
+import { useUpdateOrderSubscription } from "@/api/orders/subscriptions";
 
 const OrderDetailsScreen = () => {
   // Query params from URL (id)
@@ -17,6 +18,8 @@ const OrderDetailsScreen = () => {
 
   // Data from Api
   const { data: order, error, isLoading } = useOrderDetails(id);
+
+  useUpdateOrderSubscription(id);
 
   if (isLoading) {
     return <ActivityIndicator />;

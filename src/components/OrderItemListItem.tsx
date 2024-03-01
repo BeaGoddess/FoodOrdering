@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { OrderItem } from "@/types";
+import { Tables } from "@/types";
 import { defaultPizzaImage } from "./ProductListItem";
 import Colors from "@/constants/Colors";
 
 type OrderItemListItemProps = {
-  orderItem: OrderItem;
+  orderItem: Tables<"order_items"> & { products: Tables<"products"> };
 };
 
 const OrderItemListItem = ({ orderItem }: OrderItemListItemProps) => {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: "center",
   },
   name: {
     fontWeight: "500",
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
   },
   quantity: {
     fontSize: 18,
-    fontWeight: '500'
+    fontWeight: "500",
   },
   productDetails: {
     gap: 10,
     flexDirection: "row",
-    alignItems: 'center',
+    alignItems: "center",
     marginVertical: 10,
   },
   details: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   image: {
     width: 75,
     aspectRatio: 1,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginRight: 10,
   },
 });

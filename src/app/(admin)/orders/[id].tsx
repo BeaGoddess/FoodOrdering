@@ -1,10 +1,17 @@
-import { View, Text, StyleSheet, FlatList, Pressable, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import OrdersListItem from "@/components/OrdersListItem";
 import OrderItemListItem from "@/components/OrderItemListItem";
 import Colors from "@/constants/Colors";
 import { OrderStatusList } from "@/types";
-import { useOrderDetails } from "@/api/orders";
+import { useOrderDetails, useUpdateOrder } from "@/api/orders";
 
 const OrderDetailsScreen = () => {
   // Query params from URL (id)
@@ -13,6 +20,11 @@ const OrderDetailsScreen = () => {
 
   // Data from Api
   const { data: order, error, isLoading } = useOrderDetails(id);
+  const { mutate: updateOrder } = useUpdateOrder();
+
+  const updateStatus = (status: string) => {
+    updateOrder({ id: id, updatedField: { status } });
+  };
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -38,7 +50,7 @@ const OrderDetailsScreen = () => {
               {OrderStatusList.map((status) => (
                 <Pressable
                   key={status}
-                  onPress={() => console.warn("Update status")}
+                  onPress={() => updateStatus(status)}
                   style={{
                     borderColor: Colors.light.tint,
                     borderWidth: 1,
