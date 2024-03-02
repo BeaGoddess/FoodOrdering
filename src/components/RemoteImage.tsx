@@ -20,6 +20,7 @@ const RemoteImage = ({ path, fallback, ...imageProps }: RemoteImageProps) => {
 
       if (error) {
         console.log(error);
+        setImage(path)
       }
 
       if (data) {
