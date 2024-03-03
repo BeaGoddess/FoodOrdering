@@ -17,6 +17,8 @@ const SignInScreen = () => {
       password: password,
     });
 
+    console.log(error);
+
     if (error) Alert.alert(error.message);
     setLoading(false);
   }
