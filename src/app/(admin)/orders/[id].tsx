@@ -12,6 +12,7 @@ import OrderItemListItem from "@/components/OrderItemListItem";
 import Colors from "@/constants/Colors";
 import { OrderStatusList } from "@/types";
 import { useOrderDetails, useUpdateOrder } from "@/api/orders";
+import { notifyUserAboutOrderUpdate } from "@/lib/notifications";
 
 const OrderDetailsScreen = () => {
   // Query params from URL (id)
@@ -22,8 +23,15 @@ const OrderDetailsScreen = () => {
   const { data: order, error, isLoading } = useOrderDetails(id);
   const { mutate: updateOrder } = useUpdateOrder();
 
-  const updateStatus = (status: string) => {
-    updateOrder({ id: id, updatedField: { status } });
+  const updateStatus = async (status: string) => {
+    updateOrder({
+      id: id,
+      updatedField: { status },
+    });
+
+    if (order) {
+      notifyUserAboutOrderUpdate({ ...order, status });
+    }
   };
 
   if (isLoading) {
