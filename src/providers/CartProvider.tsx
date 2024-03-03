@@ -73,7 +73,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
     setItems([]);
   };
 
-  const checkout = () => {
+  const checkout = async () => {
     insertOrder(
       { total },
       {
